@@ -43,3 +43,6 @@ export const supabase = new Proxy(
 export const PRODUCT_STORAGE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
 	? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images/`
 	: ''
+
+// Export a function that creates a new client instance
+export { createSafeClient as createClient }

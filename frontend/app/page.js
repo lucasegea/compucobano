@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo, useRef, createContext } from 'react'
 const pageDataCache = new Map()
 import { v4 as uuidv4 } from 'uuid'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Waves, ShoppingCart, Filter, ChevronDown } from 'lucide-react'
+import { Search, ShoppingCart, Filter, ChevronDown } from 'lucide-react'
 
 import { getCategories, getProducts, getCategoryTree, getProductsByCategoryIds, getCuratedAllProductsMix, getCuratedAllProductsOrder } from '@/lib/database'
 import { supabase } from '@/lib/supabase'
@@ -19,6 +19,7 @@ const ProductPagination = dynamic(() => import('@/components/ProductPagination')
 import SearchBar from '@/components/SearchBar'
 import CartDrawer from '@/components/CartDrawer'
 import ImageViewer from '@/components/ImageViewer'
+import CompuCobanoLogo from '@/components/CompuCobanoLogo'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
@@ -145,6 +146,8 @@ export default function HomePage() {
     async function loadInitialData() {
       setLoading(true)
       try {
+        console.log('🚀 [page.js] Cargando datos iniciales...')
+        
         const [categoriesData, productsData, tree] = await Promise.all([
           getCategories(),
           getProducts({ limit: productsPerPage, page: 1 }),
@@ -1132,35 +1135,21 @@ export default function HomePage() {
   <div className="mx-auto w-full lg:w-[96%] max-w-screen-2xl px-0 sm:px-3 py-4 sm:py-6">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <Waves className="h-8 w-8 text-blue-900" />
-                </div>
-                <div>
-                  <Link
-                    href={cartId ? ((useSupabaseCartRef.current || (typeof window !== 'undefined' && window.location.pathname.startsWith('/cart/'))) ? `/cart/${cartId}` : `/?cartId=${cartId}`) : '/'}
-                    onClick={(e) => {
-                      // Forzar reload completo y conservar cartId si existe
-                      e.preventDefault()
-                      try {
-                        const id = cartIdRef.current || cartId || (typeof window !== 'undefined' ? localStorage.getItem('sharedCartId') : null)
-                        const href = id ? ((useSupabaseCartRef.current || (typeof window !== 'undefined' && window.location.pathname.startsWith('/cart/'))) ? `/cart/${id}` : `/?cartId=${id}`) : '/'
-                        window.location.href = href
-                      } catch {
-                        window.location.href = '/'
-                      }
-                    }}
-                    className="group inline-flex flex-col focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md"
-                  >
-                    <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-900 group-hover:underline cursor-pointer">
-                      Shams lo trae!
-                    </h1>
-                    <p className="text-sm text-muted-foreground">
-                      Los mejores precios
-                    </p>
-                  </Link>
-                </div>
-              </div>
+              <CompuCobanoLogo 
+                size="md"
+                onClick={(e) => {
+                  // Forzar reload completo y conservar cartId si existe
+                  e.preventDefault()
+                  try {
+                    const id = cartIdRef.current || cartId || (typeof window !== 'undefined' ? localStorage.getItem('sharedCartId') : null)
+                    const href = id ? ((useSupabaseCartRef.current || (typeof window !== 'undefined' && window.location.pathname.startsWith('/cart/'))) ? `/cart/${id}` : `/?cartId=${id}`) : '/'
+                    window.location.href = href
+                  } catch {
+                    window.location.href = '/'
+                  }
+                }}
+                className="hover:scale-105 transition-transform duration-200"
+              />
             </div>
             
             <div className="flex items-center gap-4">

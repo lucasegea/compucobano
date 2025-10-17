@@ -4,29 +4,34 @@ import { Toaster } from '@/components/ui/toaster'
 import NextTopLoader from 'nextjs-toploader'
 
 export const metadata = {
-  title: 'Shams lo trae! - Los mejores productos al mejor precio',
-  description: 'Descubre ofertas y productos con precios actualizados en tiempo real. Encuentra lo que necesitas en nuestro catálogo.',
-  keywords: 'shams lo trae, catálogo, productos, compras, precios, Costa Rica',
+  title: 'compuCobano - Tu conexión global en oficina, escuela y tecnología',
+  description: 'Conectamos el mundo con productos de oficina, escolares y tecnológicos. Todo lo que necesitas para tu productividad global.',
+  keywords: 'compucobano, oficina, escolar, cómputo, papelería, tecnología, laptop, impresoras, cuadernos, Costa Rica',
   icons: {
-    icon: '/icon.svg',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/apple-touch-icon.svg'
   },
   openGraph: {
-    title: 'Shams lo trae! - Los mejores productos',
-    description: 'Descubre nuestra selección con precios actualizados en tiempo real.',
+    title: 'compuCobano - Tu tienda de oficina, escuela y tecnología',
+    description: 'Todo para tu productividad: artículos de oficina, escolares y tecnológicos.',
     type: 'website',
     locale: 'es_CR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shams lo trae! - Los mejores productos',
-    description: 'Descubre nuestra selección con precios actualizados en tiempo real.',
+    title: 'compuCobano - Tu tienda de oficina, escuela y tecnología',
+    description: 'Todo para tu productividad: artículos de oficina, escolares y tecnológicos.',
   },
 }
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#FF6A3D',
+  themeColor: '#2563EB',
 }
 
 export default function RootLayout({ children }) {

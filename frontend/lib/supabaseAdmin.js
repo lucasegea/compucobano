@@ -7,6 +7,6 @@ export function getSupabaseAdmin() {
   if (!supabaseUrl || !serviceKey) return null
   return createClient(supabaseUrl, serviceKey, {
     auth: { persistSession: false, autoRefreshToken: false },
-    global: { headers: { 'X-Client-Info': 'shams-cart-admin' } },
+    global: { headers: { 'X-Client-Info': 'compucobano-admin' } },
   })
 }
